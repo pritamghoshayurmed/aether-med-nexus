@@ -2,41 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Telemedicine Design System - Modern Medical Interface */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Medical Teal Color Palette */
+    --background: 220 25% 6%;
+    --foreground: 180 10% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 20% 8%;
+    --card-foreground: 180 10% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 20% 8%;
+    --popover-foreground: 180 10% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Medical Teal Primary */
+    --primary: 175 70% 45%;
+    --primary-foreground: 220 25% 6%;
+    --primary-glow: 175 85% 55%;
+    --primary-dark: 175 60% 25%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Medical Secondary Green */
+    --secondary: 165 65% 35%;
+    --secondary-foreground: 180 10% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted Medical Gray */
+    --muted: 220 15% 15%;
+    --muted-foreground: 180 8% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Medical Accent */
+    --accent: 175 70% 45%;
+    --accent-foreground: 220 25% 6%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Medical Alert Colors */
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 180 10% 98%;
+    --warning: 45 90% 60%;
+    --warning-foreground: 220 25% 6%;
+    --success: 140 70% 45%;
+    --success-foreground: 220 25% 6%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 15% 20%;
+    --input: 220 15% 18%;
+    --ring: 175 70% 45%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Medical Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)));
+    --gradient-background: linear-gradient(180deg, hsl(var(--background)), hsl(220 20% 8%));
+    --gradient-glass: linear-gradient(135deg, hsla(var(--primary), 0.1), hsla(var(--primary-glow), 0.05));
+
+    /* Medical Shadows */
+    --shadow-medical: 0 20px 60px -20px hsla(var(--primary), 0.3);
+    --shadow-card: 0 10px 40px -15px hsla(0, 0%, 0%, 0.4);
+    --shadow-glow: 0 0 40px hsla(var(--primary-glow), 0.4);
+
+    /* Animations */
+    --transition-medical: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +125,63 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    background: var(--gradient-background);
+  }
+}
+
+@layer components {
+  /* Medical Glass Card Effect */
+  .glass-card {
+    backdrop-filter: blur(20px);
+    background: var(--gradient-glass);
+    border: 1px solid hsla(var(--border), 0.2);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Medical Glow Effect */
+  .medical-glow {
+    box-shadow: var(--shadow-glow);
+    animation: var(--animation-pulse);
+  }
+
+  /* Medical Button Styles */
+  .btn-medical {
+    background: var(--gradient-primary);
+    border: none;
+    box-shadow: var(--shadow-medical);
+    transition: var(--transition-medical);
+  }
+
+  .btn-medical:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Medical Gradient Text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Medical Animations */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes pulse-glow {
+    from { box-shadow: 0 0 20px hsla(var(--primary), 0.3); }
+    to { box-shadow: 0 0 40px hsla(var(--primary-glow), 0.6); }
   }
 }
