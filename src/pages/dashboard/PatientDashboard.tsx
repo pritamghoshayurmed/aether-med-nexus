@@ -17,6 +17,7 @@ import { MedicalButton } from "@/components/ui/medical-button";
 import { MedicalCard, MedicalCardContent, MedicalCardHeader, MedicalCardTitle } from "@/components/ui/medical-card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import BottomNavigation from "@/components/navigation/BottomNavigation";
 
 const PatientDashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -56,7 +57,7 @@ const PatientDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-background p-4 md:p-6">
+    <div className="min-h-screen bg-gradient-background p-4 md:p-6 pb-24">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
@@ -253,6 +254,8 @@ const PatientDashboard = () => {
           </div>
         </div>
       </div>
+
+      <BottomNavigation userRole="patient" />
     </div>
   );
 };
