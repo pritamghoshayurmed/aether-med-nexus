@@ -14,8 +14,10 @@ import {
 } from "lucide-react";
 import { MedicalCard, MedicalCardContent, MedicalCardHeader, MedicalCardTitle } from "@/components/ui/medical-card";
 import { MedicalButton } from "@/components/ui/medical-button";
+import { useNavigate } from "react-router-dom";
 
 const RoleSection = () => {
+  const navigate = useNavigate();
   const roles = [
     {
       id: "patient",
@@ -135,9 +137,20 @@ const RoleSection = () => {
                 </div>
 
                 <div className="mt-8">
-                  <MedicalButton 
-                    variant="medical" 
+                  <MedicalButton
+                    variant="medical"
                     className="w-full group-hover:shadow-lg transition-all duration-300"
+                    onClick={() => {
+                      if (role.id === "patient") {
+                        navigate("/dashboard/patient");
+                      } else if (role.id === "doctor") {
+                        navigate("/dashboard/doctor");
+                      } else if (role.id === "hospital") {
+                        navigate("/dashboard/hospital");
+                      } else if (role.id === "admin") {
+                        navigate("/dashboard/admin");
+                      }
+                    }}
                   >
                     {role.buttonText}
                   </MedicalButton>
